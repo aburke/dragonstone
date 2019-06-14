@@ -1,10 +1,10 @@
 # 14.5 Reconstruct a BST From Traversal Data
 class Node(object):
 
-    def __init__(self, val):
+    def __init__(self, val, left = None, right = None):
         self.val = val
-        self.left = None
-        self.right = None
+        self.left = left
+        self.right = right
 
     def __str__(self):
         return f"{str(self.val)} => ({self.left}, {self.right})"
@@ -14,23 +14,14 @@ class Node(object):
 
 
 def recon_preorder(data):
-    nodes = [Node(n) for n in data]
-    root = nodes[0]
-    i = 1
-    for _ in range(1, len(nodes)):
-        if nodes[i - 1].val > nodes[i].val:
-            nodes[i - 1].left = nodes[i]
-            i += 1
-        else:
-            j = i
-            item = nodes[i]
-            while j > 0 and item.val > nodes[j - 1].val:
-                del nodes[j] 
-                j -= 1
-
-            i = j    
-            nodes[j].right = item
-            del nodes[j]
+    if not data:
+        return None
+    new_root_idx = next((i for i, x in enumerate(data) if data[0] < x), len(data))
+    return Node(
+        data[0],
+        recon_preorder(data[1: new_root_idx]),
+        recon_preorder(data[new_root_idx:])
+    )
             
 
     return root
@@ -68,14 +59,4 @@ if __name__ == '__main__':
 
     items = preorder_traverse_2(a)
     print(preorder_traverse_2(recon_preorder(items)))
-
-    # items = []
-    # print(preorder_traverse_2(a))
-    # preorder_traverse(a, items)
-    # top = recon_preorder(items)
-
-    # items = []
-    # preorder_traverse(top, items)
-    # print(items)
-
     
