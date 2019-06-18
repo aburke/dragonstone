@@ -22,9 +22,7 @@ def recon_preorder(data):
         recon_preorder(data[1: new_root_idx]),
         recon_preorder(data[new_root_idx:])
     )
-            
-
-    return root
+    
 
 
 def preorder_traverse(node, items):
