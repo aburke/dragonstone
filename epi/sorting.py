@@ -40,6 +40,52 @@ def compute_union_intrvls(intervals):
     return sorted(union_of_intervals, key = lambda x: x.left_num)
 
 
+# 13.7 Compute the union of intervals [REDUX] <----- better than the first one
+
+Point = namedtuple('Point', ('val', 'closed'))
+
+class Interval(object):
+
+    def __init__(self, p1 = None, p2 = None):
+        self.p1 = p1
+        self.p2 = p2
+
+    def __str__(self):
+        b1 = '[' if self.p1.closed else '('
+        b2 = ']' if self.p2.closed else ')'
+
+        return f"{b1}{str(self.p1.val)}, {str(self.p2.val)}{b2}"
+
+    def __repr__(self):
+        return self.__str__() 
+
+def merge_intervals(intervals):
+    merged_intervals = []
+
+    if intervals:
+        intervals = sorted(intervals, key = lambda x: x.p1)
+        mi = Interval(intervals[0].p1, intervals[0].p2)
+
+        for intrvl in intervals[1:]:
+            if (intrvl.p1.val <= mi.p2.val and intrvl.p2.val >= mi.p2.val) or intrvl.p1.val == mi.p2.val:
+                mi.p1 = Point(
+                    val = mi.p1.val,
+                    closed = intrvl.p1.closed if mi.p1.val == intrvl.p1.val and intrvl.p1.closed else mi.p1.closed
+                )
+
+                mi.p2 = Point(
+                    val = intrvl.p2.val,
+                    closed = mi.p2.closed if mi.p2.val == intrvl.p2.val and mi.p2.closed else intrvl.p2.closed
+                )
+
+            elif intrvl.p1.val > mi.p2.val:
+                merged_intervals.append(mi)
+                mi = Interval(intrvl.p1, intrvl.p2)
+
+        merged_intervals.append(mi)
+
+    return merged_intervals
+
 # 13.10 Implement fast sorting algorithm for lists
 
 class Node(object):
@@ -75,19 +121,30 @@ def sort_list(top):
 
     
 if __name__ == '__main__':
-    a = Node(10)
-    b = Node(7)
-    c = Node(2)
-    d = Node(7)
-    e = Node(6)
+    intervals = [
+        Interval(Point(5, True), Point(10, True)),
+        Interval(Point(2, False), Point(7, False)),
+        Interval(Point(20, True), Point(30, True)),
+        Interval(Point(10, False), Point(14, False)),
+        Interval(Point(29, False), Point(34, True)),
+        Interval(Point(30, False), Point(31, False)),
+    ] 
 
-    a.next = b
-    b.next = c
-    c.next = d
-    d.next = e
+    print(merge_intervals(intervals))
 
-    new = sort_list(a)
-    new.traverse()     
+    # a = Node(10)
+    # b = Node(7)
+    # c = Node(2)
+    # d = Node(7)
+    # e = Node(6)
+
+    # a.next = b
+    # b.next = c
+    # c.next = d
+    # d.next = e
+
+    # new = sort_list(a)
+    # new.traverse()     
 
     # res = compute_union_intrvls({
     #     Interval('(', 16, 17, ')'),
