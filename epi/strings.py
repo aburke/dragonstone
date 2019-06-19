@@ -53,6 +53,7 @@ def look_and_say(n):
 
 def look_and_say_alt(n):
     ''' The Look-and-Say problem 6.8 [pyhonic] '''
+    ''' 1, 11, 21, 1211, 111221, 312211'''
     import itertools
 
     state = '1'

@@ -1,6 +1,6 @@
 
 def delete_duplicates(arr):
-    ''' Delete duplicates 5.5 '''
+    ''' Delete duplicates 5.5  input is sorted'''
     if not arr:
         return 0
 

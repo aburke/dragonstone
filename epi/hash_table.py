@@ -10,7 +10,7 @@ class Node(object):
 
 
 def compute_lca(node1, node2):
-    ''' Compute LCA 12.4 '''
+    ''' Compute Lowest Comment Ancestor (LCA) 12.4 '''
     visited = {}
     lca = None
 
