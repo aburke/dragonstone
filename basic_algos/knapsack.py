@@ -37,10 +37,18 @@ def build_grid(items, capacity):
     return grid
 
 
-def get_optimal_set(i, total, grid, items):
+def get_optimal_set(items, capacity):
+    grid = build_grid(items, capacity)
+    i, w = find_max_idx(grid)
+    max_total = grid[i][w]
+
+    return build_optimal_set(i, max_total, grid, items)
+
+
+def build_optimal_set(i, total, grid, items):
     if i > 0 and total > 0:
         total, o_items = (total, []) if total in grid[i - 1] else (total - items[i].price, [i])
-        return o_items + get_optimal_set(i - 1, total, grid, items)
+        return o_items + build_optimal_set(i - 1, total, grid, items)
 
     return []
         
@@ -54,7 +62,4 @@ if __name__ == '__main__':
         4: Package(6, 5)
     }
 
-    grid = build_grid(items, 8)
-    i, w = find_max_idx(grid)
-    total = grid[i][w]
-    print(get_optimal_set(i, total, grid, items))
+    print(get_optimal_set(items, 8))
