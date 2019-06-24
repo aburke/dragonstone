@@ -26,6 +26,25 @@ def traverse(node):
         print(node.val)
         node = node.ref
 
+def even_odd_merge_3(node):
+    ''' This one is good and works and was the last created for 7.10 '''
+    even, odd = Node(None, None), Node(None, None)
+    e_top, o_top = even, odd
+
+    while node:
+        if node.val % 2 == 0:
+            even.ref = node
+            even = even.ref
+        else:
+            odd.ref = node
+            odd = odd.ref
+
+        node = node.ref
+
+    even.ref = o_top.ref
+    odd.ref = None
+    return e_top.ref
+
 def even_odd_merge_alt(node):
     
     even = Node(None, None)
@@ -76,5 +95,5 @@ def even_odd_merge(node):
 
 if __name__ == '__main__':
     a_node = create_list([1, 2, 3, 4, 5])
-    a_node = even_odd_merge_alt(a_node)
+    a_node = even_odd_merge_3(a_node)
     traverse(a_node)
