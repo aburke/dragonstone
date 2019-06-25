@@ -1,15 +1,15 @@
-def convert_to_alpha(num):
-    alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    res = ''
-    
-    # work in progress
+def alpha_convert(num):
+    converted = ''
+    div = 26
+
     while num:
-        part = num % 26
-        part = part or 26
-        res += alpha[part - 1]
-        num -= 26 if num > 26 else part 
+        converted = chr(num % div - 1 + ord('A')) + converted
+        num //= 26
 
-    return res
+    return converted
 
-if __name__ == '__main__':
-    print(convert_to_alpha(29))
+
+if __name__ == "__main__":
+    print('9345 =>', alpha_convert(9345))
+    print('99 =>', alpha_convert(99))
+    print('28 =>', alpha_convert(28))
