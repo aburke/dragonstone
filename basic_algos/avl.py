@@ -125,7 +125,7 @@ root = myTree.insert(root, 40)
 root = myTree.insert(root, 50) 
 root = myTree.insert(root, 25) 
 
-"""The constructed AVL Tree would be 
+r"""The constructed AVL Tree would be 
 			30 
 		/ \ 
 		20 40 
