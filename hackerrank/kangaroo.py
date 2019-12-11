@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/kangaroo/problem?isFullScreen=true
 
-#!/bin/python3
-
 import math
 import os
 import random
@@ -11,11 +9,20 @@ import sys
 # Complete the kangaroo function below.
 def kangaroo(x1, v1, x2, v2):
     result = 'NO'
-    if (x1 < x2 and v1 > v2) or (x1 > x2 and v1 < v2) or (x1 == x2):
+    if (x1 == x2):
         result = 'YES'
+    elif (x1 < x2 and v1 > v2) or (x1 > x2 and v1 < v2):
+        p1, k1 = (x1 + v1, v1) if x1 < x2 else (x2 + v2, v2)
+        p2, k2 = (x1 + v1, v1) if x1 > x2 else (x2 + v2, v2)
+        while p1 < p2:
+            p1 += k1
+            p2 += k2
+
+        if p1 == p2:
+            result = 'YES'
 
     return result
-    
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
