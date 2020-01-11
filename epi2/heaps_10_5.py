@@ -22,7 +22,7 @@ class MedianCalc(object):
                 heapq.heappush(self.max_heap, -1 * heapq.heappop(self.min_heap))
                 heapq.heappush(self.min_heap, val)
             else:
-                heapq.heappush(self.max_heap, -1 * val) # this can be combined with the toggle
+                heapq.heappush(self.max_heap, -1 * val)
 
             self.medians.append(-1 * self.max_heap[0])
 
