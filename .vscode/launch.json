@@ -7,6 +7,9 @@
         {
             "name": "Python: Current File",
             "type": "python",
+            "env": {
+                "PYTHONPATH": "/Users/aburke07/Documents/GitHub/dragonstone"
+            },
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"

@@ -6,6 +6,9 @@ class BinaryTree(object):
         self.right = None
         self.parent = None
 
+    def __repr__(self):
+        return 'BinaryTree({})'.format(self.val)
+
     @staticmethod
     def inorder_recursive(tree, elmnts):
         if tree:
