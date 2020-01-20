@@ -7,8 +7,3 @@ def find_duplicate_and_missing(arr):
 
     missing = n * (n - 1) * 0.5 + i - sum(arr)
     return i, int(missing)
-
-
-if __name__ == "__main__":
-    arr = [0, 1, 2, 5, 5, 4]
-    print(find_duplicate_and_missing(arr))
