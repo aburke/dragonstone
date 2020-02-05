@@ -1,10 +1,10 @@
 class BinaryTree(object):
 
-    def __init__(self, val):
+    def __init__(self, val, left = None, right = None, parent = None):
         self.val = val
-        self.left = None
-        self.right = None
-        self.parent = None
+        self.left = left
+        self.right = right
+        self.parent = parent
 
     def __repr__(self):
         return 'BinaryTree({})'.format(self.val)
