@@ -1,3 +1,3 @@
-import subprocess
+class DoSomething(object):
 
-subprocess.check_output(['source', '/Users/aburke07/.bash_profile'])
+    BOO = 'boo!'
