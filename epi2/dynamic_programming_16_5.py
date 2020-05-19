@@ -3,6 +3,7 @@ from itertools import product
 
 Pos = namedtuple('Pos', ['x', 'y'])
 
+
 def path_exists(univ, path, pos):
     if not path:
         return True
@@ -30,7 +31,7 @@ if __name__ == "__main__":
     ]
     path = [7, 6, 5, 9, 7, 6, 5, 5]
     pe = False
-    for x, y in product(range(len(univ)), repeat = 2):
+    for x, y in product(range(len(univ)), repeat=2):
         pe = path_exists(univ, path, Pos(x, y))
         if pe:
             break

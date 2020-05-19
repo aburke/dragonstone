@@ -16,7 +16,7 @@
 
 from collections import defaultdict
 
-def group_stuff(node_dict):
+def group_stuff(node_dict: dict):
     groups = defaultdict(set)
     for k, v in node_dict.items():
         for i in v:
@@ -37,6 +37,7 @@ def group_stuff(node_dict):
 
     return unmerged_groups
 
+
 if __name__ == "__main__":
     ip = {
         'c1': ['bob@yahoo.com', 'bob@gmail.com'],
@@ -48,4 +49,3 @@ if __name__ == "__main__":
     }
 
     print(group_stuff(ip))
-        

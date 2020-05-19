@@ -1,6 +1,7 @@
 from epi2.binary_tree_9_11 import BinaryTree
 
-def preorder(node):
+def preorder(node: BinaryTree):
+    ''' Order tree in pre order format '''
     def helper(node, coll):
         if node:
             coll.append(node.val)
