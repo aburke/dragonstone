@@ -17,6 +17,7 @@ def path_exists(univ, path, pos):
                 break
         return pe
 
+
 def get_options(pos, univ):
     idx_deltas = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     is_valid = lambda x, y: 0 <= x < len(univ) and 0 <= y < len(univ[0])
